@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>العربة الصغيرة | تواصل معنا</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #25D366;
+    --green-dark: #1DA851;
+    --green-glow: rgba(37, 211, 102, 0.18);
+    --black: #0D0D0D;
+    --surface: #161616;
+    --card: #1E1E1E;
+    --border: rgba(255,255,255,0.07);
+    --text: #F5F5F5;
+    --muted: #8A8A8A;
+    --gold: #D4A843;
+  }
+
+  html, body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Cairo', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.25rem 3rem;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(37,211,102,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 20% 80%, rgba(37,211,102,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* Road lines decoration */
+  .road-lines {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: repeating-linear-gradient(
+      90deg,
+      var(--green) 0px, var(--green) 30px,
+      transparent 30px, transparent 60px
+    );
+    opacity: 0.3;
+  }
+
+  .logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2.5rem;
+  }
+
+  .logo-icon {
+    width: 46px;
+    height: 46px;
+    background: var(--green);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-icon svg {
+    width: 26px;
+    height: 26px;
+    fill: #0D0D0D;
+  }
+
+  .logo-text {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+  }
+
+  .logo-text span {
+    color: var(--green);
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(37,211,102,0.1);
+    border: 1px solid rgba(37,211,102,0.25);
+    color: var(--green);
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 16px;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+
+  .badge-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  h1 {
+    font-size: clamp(28px, 7vw, 46px);
+    font-weight: 900;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--green);
+  }
+
+  .subtitle {
+    font-size: clamp(15px, 4vw, 18px);
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 420px;
+    margin: 0 auto 2.5rem;
+    font-weight: 400;
+  }
+
+  /* ── CTA Button ── */
+  .cta-wrap {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .cta-ring {
+    position: absolute;
+    inset: -12px;
+    border-radius: 100px;
+    border: 1.5px solid rgba(37,211,102,0.2);
+    animation: ring-pulse 2.5s ease-in-out infinite;
+  }
+
+  .cta-ring-2 {
+    position: absolute;
+    inset: -24px;
+    border-radius: 100px;
+    border: 1px solid rgba(37,211,102,0.08);
+    animation: ring-pulse 2.5s ease-in-out infinite 0.4s;
+  }
+
+  @keyframes ring-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.04); }
+  }
+
+  .cta-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--green);
+    color: #0D0D0D;
+    font-family: 'Cairo', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 16px 36px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+
+  .cta-btn:hover {
+    background: var(--green-dark);
+    transform: scale(1.03);
+  }
+
+  .cta-btn:active {
+    transform: scale(0.98);
+  }
+
+  .cta-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: #0D0D0D;
+    flex-shrink: 0;
+  }
+
+  .phone-hint {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 0.75rem;
+    direction: ltr;
+    font-weight: 400;
+  }
+
+  /* ── Stats strip ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 460px;
+    margin: 0 auto 3rem;
+  }
+
+  .stat {
+    background: var(--card);
+    padding: 1rem 0.5rem;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--text);
+    display: block;
+    line-height: 1.2;
+  }
+
+  .stat-num span {
+    color: var(--green);
+  }
+
+  .stat-label {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 3px;
+    display: block;
+    line-height: 1.4;
+  }
+
+  /* ── Services section ── */
+  .section {
+    padding: 3.5rem 1.25rem;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--green);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .section-title {
+    font-size: clamp(22px, 5vw, 28px);
+    font-weight: 800;
+    margin-bottom: 2rem;
+    line-height: 1.4;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .service-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .service-card.full {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .service-icon {
+    width: 42px;
+    height: 42px;
+    background: rgba(37,211,102,0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .service-icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: var(--green);
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .service-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+  }
+
+  .service-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── Why us ── */
+  .why-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .why-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.1rem 1.25rem;
+  }
+
+  .check-circle {
+    width: 28px;
+    height: 28px;
+    background: rgba(37,211,102,0.12);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .check-circle svg {
+    width: 15px;
+    height: 15px;
+    stroke: var(--green);
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .why-text strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 3px;
+  }
+
+  .why-text p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* ── Final CTA ── */
+  .final-cta {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 3rem 1.25rem 4rem;
+    text-align: center;
+  }
+
+  .final-cta h2 {
+    font-size: clamp(20px, 5vw, 26px);
+    font-weight: 800;
+    margin-bottom: 0.75rem;
+  }
+
+  .final-cta p {
+    font-size: 15px;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  .final-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--green);
+    color: #0D0D0D;
+    font-family: 'Cairo', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 15px 32px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .final-btn:hover { background: var(--green-dark); }
+  .final-btn:active { transform: scale(0.97); }
+
+  .final-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: #0D0D0D;
+    flex-shrink: 0;
+  }
+
+  .footer-note {
+    margin-top: 1.5rem;
+    font-size: 12.5px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    max-width: 540px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════
+     HERO
+═══════════════════════════════ -->
+<section class="hero">
+  <div class="road-lines"></div>
+
+  <div class="logo-wrap">
+    <div class="logo-icon">
+      <!-- car icon -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3 12l2-5h14l2 5v5H3v-5z"/>
+        <circle cx="7" cy="17" r="1.5"/>
+        <circle cx="17" cy="17" r="1.5"/>
+        <path d="M3 12h18M8 7l-1 5M16 7l1 5"/>
+      </svg>
+    </div>
+    <div class="logo-text">العربة <span>الصغيرة</span></div>
+  </div>
+
+  <div class="badge">
+    <div class="badge-dot"></div>
+    متاح الآن للرد
+  </div>
+
+  <h1>سيارتك المثالية<br>بين <em>يديك الآن</em></h1>
+
+  <p class="subtitle">
+    سيارات جديدة ومستعملة معتمدة، تمويل مرن، وخدمة توصيل.<br>
+    تواصل معنا مباشرة عبر واتساب.
+  </p>
+
+  <div class="cta-wrap">
+    <div class="cta-ring"></div>
+    <div class="cta-ring-2"></div>
+    <a class="cta-btn" href="https://wa.me/966536357605?text=السلام عليكم، أريد الاستفسار عن سيارة" target="_blank" rel="noopener">
+      <!-- WhatsApp SVG -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.52 3.48A11.93 11.93 0 0012.02.02C5.47.02.03 5.46.03 12a11.96 11.96 0 001.6 6.01L.02 24l6.13-1.61A11.94 11.94 0 0012.02 24c6.55 0 11.98-5.44 11.98-12 0-3.2-1.25-6.21-3.48-8.52zM12.02 21.96a9.93 9.93 0 01-5.07-1.39l-.36-.22-3.75.98 1-3.65-.24-.38a9.93 9.93 0 01-1.52-5.3c0-5.49 4.47-9.96 9.96-9.96 2.66 0 5.16 1.04 7.04 2.92a9.91 9.91 0 012.92 7.05c0 5.48-4.47 9.95-9.98 9.95zm5.46-7.45c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.68-1.63-.93-2.23-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.11.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/>
+      </svg>
+      ابدأ المحادثة الآن
+    </a>
+  </div>
+
+  <p class="phone-hint">+966 53 635 7605</p>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat">
+      <span class="stat-num">+<span>500</span></span>
+      <span class="stat-label">سيارة متاحة</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num"><span>24</span>h</span>
+      <span class="stat-label">رد سريع</span>
+    </div>
+    <div class="stat">
+      <span class="stat-num">0<span>%</span></span>
+      <span class="stat-label">بدون فوائد خفية</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════
+     SERVICES
+═══════════════════════════════ -->
+<section class="section">
+  <div class="section-label">خدماتنا</div>
+  <div class="section-title">كل ما تحتاجه في مكان واحد</div>
+
+  <div class="services-grid">
+
+    <div class="service-card">
+      <div class="service-icon">
+        <!-- car icon -->
+        <svg viewBox="0 0 24 24"><path d="M5 17H3a2 2 0 01-2-2V9l3-5h14l3 5v6a2 2 0 01-2 2h-2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="16.5" cy="17.5" r="2.5"/></svg>
+      </div>
+      <div>
+        <div class="service-title">سيارات جديدة</div>
+        <div class="service-desc">أحدث الموديلات بضمان الوكالة</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <!-- refresh icon -->
+        <svg viewBox="0 0 24 24"><path d="M4 4v5h5M20 20v-5h-5"/><path d="M20.49 9A9 9 0 005.64 5.64L4 10M19 14l-1.64 4.36A9 9 0 013.51 15"/></svg>
+      </div>
+      <div>
+        <div class="service-title">مستعملة معتمدة</div>
+        <div class="service-desc">مفحوصة ومضمونة بالكامل</div>
+      </div>
+    </div>
+
+    <div class="service-card full">
+      <div class="service-icon">
+        <!-- credit card icon -->
+        <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      </div>
+      <div>
+        <div class="service-title">تمويل ميسّر بدون تعقيدات</div>
+        <div class="service-desc">خطط تقسيط مرنة تناسب ميزانيتك — تواصل معنا لمعرفة شروط التمويل</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <!-- shield icon -->
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <div>
+        <div class="service-title">ضمان شامل</div>
+        <div class="service-desc">خدمة ما بعد البيع متكاملة</div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">
+        <!-- truck/delivery icon -->
+        <svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+      </div>
+      <div>
+        <div class="service-title">توصيل للباب</div>
+        <div class="service-desc">نوصل سيارتك أينما تريد</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ════════════════════════════
+     WHY US
+═══════════════════════════════ -->
+<section class="section">
+  <div class="section-label">لماذا نحن</div>
+  <div class="section-title">ثقة عملاء المملكة</div>
+
+  <div class="why-list">
+
+    <div class="why-item">
+      <div class="check-circle">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="why-text">
+        <strong>شفافية كاملة بلا مفاجآت</strong>
+        <p>الأسعار واضحة من أول لحظة — بدون رسوم مخفية أو شروط مربكة.</p>
+      </div>
+    </div>
+
+    <div class="why-item">
+      <div class="check-circle">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="why-text">
+        <strong>رد سريع على واتساب</strong>
+        <p>فريقنا متاح لمساعدتك في اختيار السيارة المناسبة بدون انتظار طويل.</p>
+      </div>
+    </div>
+
+    <div class="why-item">
+      <div class="check-circle">
+        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="why-text">
+        <strong>منصة التمويل الأولى في المملكة</strong>
+        <p>خيارات تمويل مرنة تناسب كل الفئات — اسأل عن التفاصيل الآن.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════
+     FINAL CTA
+═══════════════════════════════ -->
+<div class="final-cta">
+  <h2>جاهز تبدأ؟</h2>
+  <p>راسلنا الآن على واتساب وسنساعدك<br>في إيجاد سيارتك المثالية خلال دقائق.</p>
+
+  <a class="final-btn" href="https://wa.me/966536357605?text=السلام عليكم، أريد الاستفسار عن سيارة" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M20.52 3.48A11.93 11.93 0 0012.02.02C5.47.02.03 5.46.03 12a11.96 11.96 0 001.6 6.01L.02 24l6.13-1.61A11.94 11.94 0 0012.02 24c6.55 0 11.98-5.44 11.98-12 0-3.2-1.25-6.21-3.48-8.52zM12.02 21.96a9.93 9.93 0 01-5.07-1.39l-.36-.22-3.75.98 1-3.65-.24-.38a9.93 9.93 0 01-1.52-5.3c0-5.49 4.47-9.96 9.96-9.96 2.66 0 5.16 1.04 7.04 2.92a9.91 9.91 0 012.92 7.05c0 5.48-4.47 9.95-9.98 9.95zm5.46-7.45c-.3-.15-1.77-.87-2.04-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.68-1.63-.93-2.23-.24-.58-.49-.5-.68-.51h-.58c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.11.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/>
+    </svg>
+    راسلنا على واتساب
+  </a>
+
+  <p class="footer-note">العربة الصغيرة — منصة التمويل الأولى في المملكة العربية السعودية</p>
+</div>
+
+</body>
+</html>
